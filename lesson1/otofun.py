@@ -9,6 +9,7 @@ def output_file(file_name):
         f.write(title + "\n\n")
         f.write("Username: " + username[:username.index(" ")] + "\n")
         f.write("Name: " + user + "\n")
+        f.write("Time: " + time.strip() + "\n")
         f.write(message)
         f.close()
 
