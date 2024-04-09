@@ -1,5 +1,16 @@
 from bs4 import BeautifulSoup
 import requests
+import os
+
+def output_file(file_name):
+    directory = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(directory, file_name)
+    with open(f"{file_path}.txt", "w", encoding = "utf-8") as f:
+        f.write(title + "\n\n")
+        f.write("Username: " + username[:username.index(" ")] + "\n")
+        f.write("Name: " + user + "\n")
+        f.write(message)
+        f.close()
 
 website = "https://www.otofun.net/threads/bao-tri-va-nang-cap-trang-choxeotofun-net.1867324/"
 content = requests.get(website).text
@@ -20,9 +31,4 @@ user = soup.find("div", class_ = "message-userDetails").find("h5", class_ = "use
 message = soup.find("article", class_ = "message-body js-selectToQuote").get_text()
 # print(message)
 
-with open(f"{title}.txt", "w", encoding = "utf-8") as f:
-    f.write(title + "\n\n")
-    f.write("Username: " + username + "\n")
-    f.write("Name: " + user + "\n")
-    f.write(message)
-    f.close()
+output_file(title)
